@@ -1,0 +1,13 @@
+name: DioneSMP
+version: 1.0.0
+main: com.dione.main.Main
+description: Plugin Principal DioneSMP
+author: Dione
+api-version: '1.20.6'
+depend:
+  - Vault
+commands:
+  loja:
+    description: Este comando abre a janela da Loja para um jogador
+    usage: /loja <jogador>
+    permission: dionesmp.loja
