@@ -2,10 +2,11 @@ package com.dione.main;
 
 import com.dione.commands.CommandShopFarmer;
 import com.dione.commands.CommandShopMiner;
-import com.dione.commands.CommandShopSmith;
+import com.dione.shopSmith.commands.CommandShopSmith;
 import com.dione.listeners.ListenerShopFarmer;
 import com.dione.listeners.ListenerShopMiner;
-import com.dione.listeners.ListenerShopSmith;
+import com.dione.shopSmith.listeners.ListenerShopEnchant;
+import com.dione.shopSmith.listeners.ListenerShopSmith;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
@@ -24,6 +25,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ListenerShopMiner(), this);
         Bukkit.getPluginManager().registerEvents(new ListenerShopFarmer(), this);
         Bukkit.getPluginManager().registerEvents(new ListenerShopSmith(), this);
+        Bukkit.getPluginManager().registerEvents(new ListenerShopEnchant(), this);
         if(!setupEconomy()){
             getLogger().severe("Não foi possivel inicializar o plugin: Erro ao inicializar Economy");
             getServer().getPluginManager().disablePlugin(this);

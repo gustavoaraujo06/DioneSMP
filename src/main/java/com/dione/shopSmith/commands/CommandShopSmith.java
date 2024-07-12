@@ -1,7 +1,6 @@
-package com.dione.commands;
+package com.dione.shopSmith.commands;
 
-import com.dione.gui.GUIShopMiner;
-import com.dione.gui.GUIShopSmith;
+import com.dione.shopSmith.gui.GUIShopSmith;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;

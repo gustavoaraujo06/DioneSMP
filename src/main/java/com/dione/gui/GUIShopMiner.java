@@ -1,5 +1,6 @@
 package com.dione.gui;
 
+import com.dione.util.InventoryUtil;
 import com.dione.util.ShopItemInfo;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -47,7 +48,7 @@ public class GUIShopMiner {
             ItemStack item = new ItemStack(entry.getValue().material);
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.lore(List.of(
-                    Component.text(entry.getValue().price + " Moedas").color(NamedTextColor.GOLD)
+                    Component.text(InventoryUtil.toCurrency(entry.getValue().price) + " Moedas").color(NamedTextColor.GOLD)
             ));
             item.setItemMeta(itemMeta);
             sellInv.setItem(entry.getKey(), item);
@@ -78,7 +79,7 @@ public class GUIShopMiner {
             ItemStack item = new ItemStack(entry.getValue().material);
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.lore(List.of(
-                    Component.text(entry.getValue().price + " Moedas").color(NamedTextColor.GOLD)
+                    Component.text(InventoryUtil.toCurrency(entry.getValue().price) + " Moedas").color(NamedTextColor.GOLD)
             ));
             item.setItemMeta(itemMeta);
             buyInv.setItem(entry.getKey(), item);
