@@ -1,22 +1,34 @@
 package com.dione.main;
 
-import com.dione.commands.CommandShop;
-import com.dione.listeners.ListenerShop;
+import com.dione.commands.CommandShopFarmer;
+import com.dione.commands.CommandShopMiner;
+import com.dione.commands.CommandShopSmith;
+import com.dione.listeners.ListenerShopFarmer;
+import com.dione.listeners.ListenerShopMiner;
+import com.dione.listeners.ListenerShopSmith;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
 
 public class Main extends JavaPlugin {
     public static Economy econ;
+    private static Main instance;
+    public static Main getInstance(){
+        return instance;
+    }
     @Override
     public void onEnable() {
-        getCommand("loja").setExecutor(new CommandShop());
-        Bukkit.getPluginManager().registerEvents(new ListenerShop(), this);
+        getCommand("lojaminer").setExecutor(new CommandShopMiner());
+        getCommand("lojafarmer").setExecutor(new CommandShopFarmer());
+        getCommand("lojasmith").setExecutor(new CommandShopSmith());
+        Bukkit.getPluginManager().registerEvents(new ListenerShopMiner(), this);
+        Bukkit.getPluginManager().registerEvents(new ListenerShopFarmer(), this);
+        Bukkit.getPluginManager().registerEvents(new ListenerShopSmith(), this);
         if(!setupEconomy()){
             getLogger().severe("Não foi possivel inicializar o plugin: Erro ao inicializar Economy");
             getServer().getPluginManager().disablePlugin(this);
         }
+        instance = this;
     }
 
     public boolean setupEconomy(){

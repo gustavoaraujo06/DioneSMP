@@ -7,7 +7,15 @@ api-version: '1.20.6'
 depend:
   - Vault
 commands:
-  loja:
-    description: Este comando abre a janela da Loja para um jogador
-    usage: /loja <jogador>
-    permission: dionesmp.loja
+  lojaminer:
+    description: Este comando abre a janela da Loja Mineiro para um jogador
+    usage: /lojaminer <jogador>
+    permission: dionesmp.lojaminer
+  lojafarmer:
+    description: Este comando abre a janela da Loja Fazendeiro para um jogador
+    usage: /lojafarmer <jogador>
+    permission: dionesmp.lojafarmer
+  lojasmith:
+    description: Este comando abre a janela da Loja Ferreiro para um jogador
+    usage: /lojasmith <jogador>
+    permission: dionesmp.lojasmith

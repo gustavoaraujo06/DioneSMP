@@ -6,14 +6,13 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
-public class GUIShop{
+public class GUIShopMiner {
     public static Inventory inv;
     public static Inventory buyInv;
     public static HashMap<Integer, ShopItemInfo> buyItems;
@@ -90,7 +89,7 @@ public class GUIShop{
     }
     private static void setupInv(){
         inv = Bukkit.createInventory(null, 45,
-                Component.text("Loja").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD));
+                Component.text("Mineiro").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD));
 
         ItemStack close = new ItemStack(Material.BARRIER);
         ItemMeta closeMeta = close.getItemMeta();
@@ -103,7 +102,7 @@ public class GUIShop{
 
         inv.setItem(0, close);
 
-        ItemStack frame = new ItemStack(Material.YELLOW_STAINED_GLASS_PANE);
+        ItemStack frame = new ItemStack(Material.CYAN_STAINED_GLASS_PANE);
 
         ItemMeta frameMeta = frame.getItemMeta();
 
