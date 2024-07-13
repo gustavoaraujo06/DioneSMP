@@ -1,7 +1,6 @@
-package com.dione.listeners;
+package com.dione.shopFarmer.listeners;
 
-import com.dione.gui.GUIShopFarmer;
-import com.dione.gui.GUIShopMiner;
+import com.dione.shopFarmer.gui.GUIShopFarmer;
 import com.dione.main.Main;
 import com.dione.util.ShopItemInfo;
 import net.kyori.adventure.text.Component;
@@ -60,7 +59,7 @@ public class ListenerShopFarmer implements Listener {
             if(GUIShopFarmer.sellItems.containsKey(e.getRawSlot())){
                 ShopItemInfo itemInfo = GUIShopFarmer.sellItems.get(e.getRawSlot());
                 ItemStack item = new ItemStack(itemInfo.material);
-                if(player.getInventory().contains(item)){
+                if(player.getInventory().contains(itemInfo.material)){
                     Main.econ.depositPlayer(player, itemInfo.price);
                     player.getInventory().removeItem(item);
                     player.sendMessage(Component.text("Você Vendeu 1 ").color(NamedTextColor.GOLD)

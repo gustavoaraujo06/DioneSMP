@@ -1,4 +1,4 @@
-package com.dione.gui;
+package com.dione.shopMiner.gui;
 
 import com.dione.util.InventoryUtil;
 import com.dione.util.ShopItemInfo;

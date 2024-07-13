@@ -1,4 +1,4 @@
-package com.dione.gui;
+package com.dione.shopFarmer.gui;
 
 import com.dione.util.InventoryUtil;
 import com.dione.util.ShopItemInfo;
@@ -40,7 +40,7 @@ public class GUIShopFarmer {
         sellItems = new HashMap<>();
         sellItems.put(1, new ShopItemInfo(Material.BROWN_MUSHROOM, 20.0));
         sellItems.put(2, new ShopItemInfo(Material.RED_MUSHROOM, 20.0));
-        sellItems.put(3, new ShopItemInfo(Material.MELON, 205.0));
+        sellItems.put(3, new ShopItemInfo(Material.MELON_SLICE, 205.0));
         sellItems.put(4, new ShopItemInfo(Material.PUMPKIN, 205.0));
         sellItems.put(5, new ShopItemInfo(Material.CACTUS, 15.0));
         sellItems.put(6, new ShopItemInfo(Material.BAMBOO, 13.0));
@@ -49,6 +49,7 @@ public class GUIShopFarmer {
         sellItems.put(9, new ShopItemInfo(Material.CARROT, 10.0));
         sellItems.put(10, new ShopItemInfo(Material.POTATO, 10.0));
         sellItems.put(11, new ShopItemInfo(Material.WHEAT, 10.0));
+        sellItems.put(12, new ShopItemInfo(Material.NETHER_WART, 20.0));
 
         for(Map.Entry<Integer, ShopItemInfo> entry : sellItems.entrySet()){
             ItemStack item = new ItemStack(entry.getValue().material);
@@ -84,6 +85,8 @@ public class GUIShopFarmer {
         buyItems.put(9, new ShopItemInfo(Material.CARROT, 1024.0));
         buyItems.put(10, new ShopItemInfo(Material.POTATO, 1024.0));
         buyItems.put(11, new ShopItemInfo(Material.WHEAT_SEEDS, 1024.0));
+        buyItems.put(12, new ShopItemInfo(Material.NETHER_WART, 5120.0));
+
 
         for(Map.Entry<Integer, ShopItemInfo> entry : buyItems.entrySet()){
             ItemStack item = new ItemStack(entry.getValue().material);

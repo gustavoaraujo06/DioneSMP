@@ -17,6 +17,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
@@ -98,6 +100,18 @@ public class ListenerShopEnchant implements Listener {
     }
     public ItemStack getEnchantedItem(ItemStack item, Enchantment type, boolean toDisplay){
         ItemStack enchantedItem = item.clone();
+        if(type == Enchantment.INFINITY){
+            Damageable meta = (Damageable)enchantedItem.getItemMeta();
+            meta.setDamage(0);
+            enchantedItem.setItemMeta(meta);
+            if(toDisplay){
+                InventoryUtil.setItemLore(enchantedItem,
+                        List.of(
+                                Component.text(InventoryUtil.toCurrency(ToolTable.getPrice(item, type)) + " Moedas", NamedTextColor.GOLD)
+                        )) ;
+            }
+            return enchantedItem;
+        }
         int enchantmentLevel = enchantedItem.getEnchantmentLevel(type);
         enchantedItem.addUnsafeEnchantment(type, enchantmentLevel + 1);
         if(toDisplay){

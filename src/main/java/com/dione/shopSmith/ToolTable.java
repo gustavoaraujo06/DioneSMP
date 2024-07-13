@@ -16,6 +16,7 @@ public class ToolTable {
         enchantmentMultiplier.put(Enchantment.FORTUNE, 350.0);
         enchantmentMultiplier.put(Enchantment.UNBREAKING, 500.0);
         enchantmentMultiplier.put(Enchantment.SILK_TOUCH, 35000.0);
+        enchantmentMultiplier.put(Enchantment.INFINITY, 750.0);
 
         tierMultiplier.put("diamond", 1.0);
         tierMultiplier.put("iron", 0.75);

@@ -30,6 +30,10 @@ public class ListenerShopSmith implements Listener {
                case 25:
                    player.openInventory(new GUIShopSmithEnchant(Enchantment.SILK_TOUCH).inv);
                    break;
+               case 31:
+                   //isso aqui na verdade é pro reparo
+                   player.openInventory(new GUIShopSmithEnchant(Enchantment.INFINITY).inv);
+                   break;
            }
         }
     }

@@ -55,7 +55,7 @@ public class InventoryUtil {
     }
     public static String toCurrency(double Value){
         NumberFormat nf = NumberFormat.getInstance(Locale.of("pt, BR"));
-        nf.setMaximumFractionDigits(0);
+        nf.setMaximumFractionDigits(2);
         nf.setGroupingUsed(true);
 
         return nf.format(Value);

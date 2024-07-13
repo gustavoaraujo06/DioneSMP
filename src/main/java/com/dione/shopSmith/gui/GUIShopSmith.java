@@ -67,10 +67,20 @@ public class GUIShopSmith {
         ));
         InventoryUtil.glowItem(silkTouchItem);
 
+        ItemStack repairItem = new ItemStack(Material.ANVIL);
+        InventoryUtil.setItemName(repairItem, Component.text("Reparo", NamedTextColor.AQUA));
+        InventoryUtil.setItemLore(repairItem, List.of(
+                Component.text("Repara o seu item"),
+                Component.text("por um preço...", NamedTextColor.GOLD)
+        ));
+        InventoryUtil.glowItem(repairItem);
+
         newInv.setItem(19, efficiencyItem);
         newInv.setItem(21, fortuneItem);
         newInv.setItem(23, unbreakingItem);
         newInv.setItem(25, silkTouchItem);
+        newInv.setItem(31, repairItem);
+
 
         return newInv;
 

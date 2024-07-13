@@ -1,6 +1,6 @@
-package com.dione.listeners;
+package com.dione.shopMiner.listeners;
 
-import com.dione.gui.GUIShopMiner;
+import com.dione.shopMiner.gui.GUIShopMiner;
 import com.dione.main.Main;
 import com.dione.util.ShopItemInfo;
 import net.kyori.adventure.text.Component;

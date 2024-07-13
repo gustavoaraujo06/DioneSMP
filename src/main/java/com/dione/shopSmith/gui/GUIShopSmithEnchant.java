@@ -16,7 +16,11 @@ public class GUIShopSmithEnchant implements InventoryHolder {
     public GUIShopSmithEnchant(Enchantment type){
         this.type = type;
 
-        assert type == Enchantment.EFFICIENCY || type == Enchantment.FORTUNE || type == Enchantment.UNBREAKING || type == Enchantment.SILK_TOUCH;
+        assert type == Enchantment.EFFICIENCY ||
+                type == Enchantment.FORTUNE ||
+                type == Enchantment.UNBREAKING ||
+                type == Enchantment.SILK_TOUCH ||
+                type == Enchantment.INFINITY;
 
         String title = "";
         if (type == Enchantment.EFFICIENCY){
@@ -25,8 +29,10 @@ public class GUIShopSmithEnchant implements InventoryHolder {
             title = "Fortuna";
         }else if (type == Enchantment.UNBREAKING){
             title = "Inquebravel";
-        }else{
+        }else if (type == Enchantment.SILK_TOUCH){
             title = "Toque Suave";
+        }else{
+            title = "Reparo";
         }
         inv = InventoryUtil.createMenu(this,
                 Component.text(title, NamedTextColor.AQUA),
