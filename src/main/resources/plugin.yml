@@ -24,3 +24,15 @@ commands:
     description: Este comando abre a janela da Loja Spawner para um jogador
     usage: /lojaspawner <jogador>
     permission: dionesmp.lojaspawner
+  lojaweapon:
+    description: Este comando abre a janela da Loja Spawner para um jogador
+    usage: /lojaweapon <jogador>
+    permission: dionesmp.lojaweapon
+  lojawitch:
+    description: Este comando abre a janela da Loja Witch para um jogador
+    usage: /lojawitch <jogador>
+    permission: dionesmp.lojawitch
+  lojabuilder:
+    description: Este comando abre a janela da Loja Builder para um jogador
+    usage: /lojabuilder <jogador>
+    permission: dionesmp.lojabuilder

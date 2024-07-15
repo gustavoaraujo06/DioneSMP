@@ -1,5 +1,6 @@
-package com.dione.shopSmith.gui;
+package com.dione.enchant.gui;
 
+import com.dione.enchant.ItemCategory;
 import com.dione.util.InventoryUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -9,33 +10,19 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class GUIShopSmithEnchant implements InventoryHolder {
+public class GUIEnchant implements InventoryHolder {
     public Enchantment type;
     public Inventory inv;
-    public GUIShopSmithEnchant(Enchantment type){
+    public Inventory parentInv;
+    public ItemCategory itemCategory;
+    public GUIEnchant(@Nullable Enchantment type, Component title, ItemCategory itemCategory, Inventory parentInv){
+        this.itemCategory = itemCategory;
         this.type = type;
-
-        assert type == Enchantment.EFFICIENCY ||
-                type == Enchantment.FORTUNE ||
-                type == Enchantment.UNBREAKING ||
-                type == Enchantment.SILK_TOUCH ||
-                type == Enchantment.INFINITY;
-
-        String title = "";
-        if (type == Enchantment.EFFICIENCY){
-            title = "Eficiencia";
-        }else if (type == Enchantment.FORTUNE){
-            title = "Fortuna";
-        }else if (type == Enchantment.UNBREAKING){
-            title = "Inquebravel";
-        }else if (type == Enchantment.SILK_TOUCH){
-            title = "Toque Suave";
-        }else{
-            title = "Reparo";
-        }
+        this.parentInv = parentInv;
         inv = InventoryUtil.createMenu(this,
-                Component.text(title, NamedTextColor.AQUA),
+                title,
                 45,
                 Component.text("Fechar", NamedTextColor.RED)
         );

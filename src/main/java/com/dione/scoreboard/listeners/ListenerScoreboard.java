@@ -29,8 +29,8 @@ public class ListenerScoreboard implements Listener {
 
         Objective objective = board.registerNewObjective("board", "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective.displayName(Component.text("Demo", NamedTextColor.RED).append(
-                Component.text("Mine", NamedTextColor.WHITE)
+        objective.displayName(Component.text("Dione", NamedTextColor.RED).append(
+                Component.text("SMP", NamedTextColor.WHITE)
         ));
         Score space = objective.getScore(" ");
         space.setScore(3);

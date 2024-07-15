@@ -1,7 +1,11 @@
 package com.dione.shopSmith.listeners;
 
+import com.dione.enchant.ItemCategory;
 import com.dione.shopSmith.gui.GUIShopSmith;
-import com.dione.shopSmith.gui.GUIShopSmithEnchant;
+import com.dione.enchant.gui.GUIEnchant;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,20 +23,20 @@ public class ListenerShopSmith implements Listener {
                    player.closeInventory();
                    break;
                case 19:
-                   player.openInventory(new GUIShopSmithEnchant(Enchantment.EFFICIENCY).inv);
+                   player.openInventory(new GUIEnchant(Enchantment.EFFICIENCY, Component.text("Eficiencia", NamedTextColor.AQUA, TextDecoration.BOLD), ItemCategory.TOOLS, GUIShopSmith.inv).inv);
                    break;
                case 21:
-                   player.openInventory(new GUIShopSmithEnchant(Enchantment.FORTUNE).inv);
+                   player.openInventory(new GUIEnchant(Enchantment.FORTUNE, Component.text("Fortuna", NamedTextColor.AQUA, TextDecoration.BOLD), ItemCategory.TOOLS, GUIShopSmith.inv).inv);
                    break;
                case 23:
-                   player.openInventory(new GUIShopSmithEnchant(Enchantment.UNBREAKING).inv);
+                   player.openInventory(new GUIEnchant(Enchantment.UNBREAKING, Component.text("Inquebravel", NamedTextColor.AQUA, TextDecoration.BOLD), ItemCategory.TOOLS, GUIShopSmith.inv).inv);
                    break;
                case 25:
-                   player.openInventory(new GUIShopSmithEnchant(Enchantment.SILK_TOUCH).inv);
+                   player.openInventory(new GUIEnchant(Enchantment.SILK_TOUCH, Component.text("Toque Suave", NamedTextColor.AQUA, TextDecoration.BOLD), ItemCategory.TOOLS, GUIShopSmith.inv).inv);
                    break;
                case 31:
                    //isso aqui na verdade é pro reparo
-                   player.openInventory(new GUIShopSmithEnchant(Enchantment.INFINITY).inv);
+                   player.openInventory(new GUIEnchant(null, Component.text("Reparar", NamedTextColor.AQUA, TextDecoration.BOLD), ItemCategory.TOOLS, GUIShopSmith.inv).inv);
                    break;
            }
         }

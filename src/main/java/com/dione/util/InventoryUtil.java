@@ -11,6 +11,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nullable;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,16 @@ public class InventoryUtil {
         inv.setItem(0, close);
         return inv;
     }
+    public static void createInventoryFrame(Inventory inv, Material frameMaterial){
+        ItemStack frame = new ItemStack(frameMaterial);
+        setItemName(frame, Component.text(""));
+
+        for(int i : new int[]{
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
+        }){
+            inv.setItem(i, frame);
+        }
+    }
     public static int toInventorySlot(int x, int y){
         return x + (9 * y);
     }
@@ -53,11 +65,16 @@ public class InventoryUtil {
 
         return newSlots;
     }
-    public static String toCurrency(double Value){
-        NumberFormat nf = NumberFormat.getInstance(Locale.of("pt, BR"));
-        nf.setMaximumFractionDigits(2);
-        nf.setGroupingUsed(true);
+    public static String toCurrency(double value){
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.of("pt", "BR"));
+        symbols.setGroupingSeparator('.');
+        symbols.setDecimalSeparator(',');
 
-        return nf.format(Value);
+        DecimalFormat formatter = new DecimalFormat("#,##0.00", symbols);
+        formatter.setMinimumFractionDigits(0);
+        formatter.setMaximumFractionDigits(2);
+
+        return formatter.format(value);
+
     }
 }

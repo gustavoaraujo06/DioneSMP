@@ -25,21 +25,21 @@ public class GUIShopSpawnerBuy {
     static{
         inv = InventoryUtil.createMenu(null,
                 Component.text("Comprar", NamedTextColor.DARK_RED), 18, Component.text("Fechar", NamedTextColor.RED));
-        buyItems.put(1, new SpawnerInfo(EntityType.WITHER_SKELETON,10000000.0));
-        buyItems.put(2, new SpawnerInfo(EntityType.IRON_GOLEM,1000000.0));
-        buyItems.put(3, new SpawnerInfo(EntityType.BLAZE,1000000.0));
-        buyItems.put(4, new SpawnerInfo(EntityType.ENDERMAN,1000000.0));
-        buyItems.put(5, new SpawnerInfo(EntityType.SLIME,500000.0));
-        buyItems.put(6, new SpawnerInfo(EntityType.MAGMA_CUBE,500000.0));
-        buyItems.put(7, new SpawnerInfo(EntityType.CREEPER,500000.0));
-        buyItems.put(8, new SpawnerInfo(EntityType.ZOMBIFIED_PIGLIN,100000.0));
-        buyItems.put(9, new SpawnerInfo(EntityType.SKELETON,100000.0));
-        buyItems.put(10, new SpawnerInfo(EntityType.SPIDER,100000.0));
-        buyItems.put(11, new SpawnerInfo(EntityType.ZOMBIE,100000.0));
-        buyItems.put(12, new SpawnerInfo(EntityType.COW,100000.0));
-        buyItems.put(13, new SpawnerInfo(EntityType.SHEEP,100000.0));
-        buyItems.put(14, new SpawnerInfo(EntityType.PIG,100000.0));
-        buyItems.put(15, new SpawnerInfo(EntityType.CHICKEN,100000.0));
+        buyItems.put(1, new SpawnerInfo(EntityType.WITHER_SKELETON,20000000.0));
+        buyItems.put(2, new SpawnerInfo(EntityType.IRON_GOLEM,15000000.0));
+        buyItems.put(3, new SpawnerInfo(EntityType.BLAZE,15000000.0));
+        buyItems.put(4, new SpawnerInfo(EntityType.ENDERMAN,15000000.0));
+        buyItems.put(5, new SpawnerInfo(EntityType.SLIME,5000000.0));
+        buyItems.put(6, new SpawnerInfo(EntityType.MAGMA_CUBE,5000000.0));
+        buyItems.put(7, new SpawnerInfo(EntityType.CREEPER,5000000.0));
+        buyItems.put(8, new SpawnerInfo(EntityType.ZOMBIFIED_PIGLIN,1000000.0));
+        buyItems.put(9, new SpawnerInfo(EntityType.SKELETON,1000000.0));
+        buyItems.put(10, new SpawnerInfo(EntityType.SPIDER,1000000.0));
+        buyItems.put(11, new SpawnerInfo(EntityType.ZOMBIE,1000000.0));
+        buyItems.put(12, new SpawnerInfo(EntityType.COW,1000000.0));
+        buyItems.put(13, new SpawnerInfo(EntityType.SHEEP,1000000.0));
+        buyItems.put(14, new SpawnerInfo(EntityType.PIG,1000000.0));
+        buyItems.put(15, new SpawnerInfo(EntityType.CHICKEN,1000000.0));
 
         for(Map.Entry<Integer, SpawnerInfo> entry : buyItems.entrySet()){
             ItemStack itemStack = getSpawner(entry.getValue().type);
