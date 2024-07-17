@@ -27,25 +27,23 @@ public class CommandShopWitch implements CommandExecutor {
 
         HashMap<Material, Double> buyItems = new HashMap<>();
         buyItems.put(Material.ROTTEN_FLESH, 512.0);
-        buyItems.put(Material.ENDER_PEARL, 2048.0);
-        buyItems.put(Material.BLAZE_ROD, 2048.0);
+        buyItems.put(Material.ENDER_PEARL, 512.0);
+        buyItems.put(Material.BLAZE_ROD, 512.0);
         buyItems.put(Material.STRING, 512.0);
         buyItems.put(Material.BONE, 512.0);
         buyItems.put(Material.LEATHER, 512.0);
-        buyItems.put(Material.FEATHER, 2048.0);
-        buyItems.put(Material.SLIME_BALL, 2048.0);
-        buyItems.put(Material.GUNPOWDER, 2048.0);
+        buyItems.put(Material.FEATHER, 512.0);
+        buyItems.put(Material.SLIME_BALL, 512.0);
+        buyItems.put(Material.GUNPOWDER, 512.0);
         buyItems.put(Material.SPIDER_EYE, 512.0);
-        buyItems.put(Material.MAGMA_CREAM, 2048.0);
-        buyItems.put(Material.WITHER_SKELETON_SKULL, 5120.0);
-        buyItems.put(Material.NETHER_STAR, 750000.0);
+        buyItems.put(Material.MAGMA_CREAM, 512.0);
 
 
 
 
         GUIShop witchShop = new GUIShop(
                 buyItems,
-                0.5,
+                0.1,
                 Component.text("Bruxa", NamedTextColor.DARK_PURPLE, TextDecoration.BOLD),
                 Material.PURPLE_STAINED_GLASS_PANE,
                 Material.SPIDER_EYE,

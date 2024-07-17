@@ -39,17 +39,17 @@ public class CommandShopFarmer implements CommandExecutor {
         buyItems.put(Material.NETHER_WART, 1024.0);
 
         HashMap<Material, Double> sellItems = new HashMap<>();
-        sellItems.put(Material.BROWN_MUSHROOM, 400.0);
-        sellItems.put(Material.RED_MUSHROOM, 400.0);
-        sellItems.put(Material.MELON_SLICE, 250.0);
-        sellItems.put(Material.PUMPKIN, 1000.0);
-        sellItems.put(Material.CACTUS, 250.0);
-        sellItems.put(Material.BAMBOO, 200.0);
-        sellItems.put(Material.SUGAR_CANE, 250.0);
-        sellItems.put(Material.BEETROOT, 300.0);
-        sellItems.put(Material.CARROT, 300.0);
-        sellItems.put(Material.POTATO, 300.0);
-        sellItems.put(Material.NETHER_WART, 320.0);
+        sellItems.put(Material.BROWN_MUSHROOM, 75.0);
+        sellItems.put(Material.RED_MUSHROOM, 75.0);
+        sellItems.put(Material.MELON_SLICE, 30.0);
+        sellItems.put(Material.PUMPKIN, 75.0);
+        sellItems.put(Material.CACTUS, 40.0);
+        sellItems.put(Material.BAMBOO, 35.0);
+        sellItems.put(Material.SUGAR_CANE, 30.0);
+        sellItems.put(Material.BEETROOT, 30.0);
+        sellItems.put(Material.CARROT, 30.0);
+        sellItems.put(Material.POTATO, 30.0);
+        sellItems.put(Material.NETHER_WART, 30.0);
 
 
         GUIShop farmerShop = new GUIShop(

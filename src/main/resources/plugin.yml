@@ -36,3 +36,7 @@ commands:
     description: Este comando abre a janela da Loja Builder para um jogador
     usage: /lojabuilder <jogador>
     permission: dionesmp.lojabuilder
+  giveminion:
+    description: Da um minion de um tipo
+    usage: /giveminion <type>
+    permission: dionesmp.giveminion

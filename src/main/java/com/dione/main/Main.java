@@ -1,5 +1,9 @@
 package com.dione.main;
 
+import com.dione.minion.commands.CommandGiveMinion;
+import com.dione.minion.listeners.ListenerMinionBreak;
+import com.dione.minion.listeners.ListenerMinionInteract;
+import com.dione.minion.listeners.ListenerMinionPlace;
 import com.dione.scoreboard.listeners.ListenerScoreboard;
 import com.dione.shop.commands.CommandShopBuilder;
 import com.dione.shop.commands.CommandShopWitch;
@@ -38,6 +42,7 @@ public class Main extends JavaPlugin {
         getCommand("lojaweapon").setExecutor(new CommandShopWeapon());
         getCommand("lojawitch").setExecutor(new CommandShopWitch());
         getCommand("lojabuilder").setExecutor(new CommandShopBuilder());
+        getCommand("giveminion").setExecutor(new CommandGiveMinion());
         Bukkit.getPluginManager().registerEvents(new ListenerShopSmith(), this);
         Bukkit.getPluginManager().registerEvents(new ListenerShop(), this);
         Bukkit.getPluginManager().registerEvents(new ListenerShopBuy(), this);
@@ -50,6 +55,9 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ListenerShopArmor(), this);
         Bukkit.getPluginManager().registerEvents(new ListenerTweaks(), this);
         Bukkit.getPluginManager().registerEvents(new ListenerFortuneTweaks(), this);
+        Bukkit.getPluginManager().registerEvents(new ListenerMinionPlace(), this);
+        Bukkit.getPluginManager().registerEvents(new ListenerMinionBreak(), this);
+        Bukkit.getPluginManager().registerEvents(new ListenerMinionInteract(), this);
         if(!setupEconomy()){
             getLogger().severe("Não foi possivel inicializar o plugin: Erro ao inicializar Economy");
             getServer().getPluginManager().disablePlugin(this);

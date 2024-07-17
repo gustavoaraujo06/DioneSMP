@@ -38,7 +38,7 @@ public class CommandShopMiner implements CommandExecutor {
 
         GUIShop minerShop = new GUIShop(
                 buyItems,
-                0.75,
+                0.1,
                 Component.text("Minerador", NamedTextColor.GOLD, TextDecoration.BOLD),
                 Material.CYAN_STAINED_GLASS_PANE,
                 Material.DIAMOND,

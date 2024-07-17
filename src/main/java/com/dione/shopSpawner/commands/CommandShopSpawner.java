@@ -1,6 +1,6 @@
 package com.dione.shopSpawner.commands;
 
-import com.dione.shopFarmer.gui.GUIShopFarmer;
+
 import com.dione.shopSpawner.gui.GUIShopSpawner;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
