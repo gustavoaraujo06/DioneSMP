@@ -1,101 +1,101 @@
 package com.dione.minion;
 
+import com.dione.database.DatabaseManager;
+import com.dione.logger.Logger;
 import com.dione.main.Main;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.util.Vector;
+import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public abstract class Minion {
-    ArmorStand stand;
-    MinionType type = MinionType.NONE;
-    Inventory inv;
+    public final static String collection = "minions";
+    protected UUID minionId;
+    protected ArmorStand stand;
+    protected MinionType type;
+    protected BukkitRunnable task;
+    protected Inventory inventory;
 
-    public Minion(Location location){
+    public Minion(Location location, MinionType type){
+        //esse metodo é usado quando criando um minion do 0
+        this.minionId = UUID.randomUUID();
+        this.type = type;
+        this.inventory = Bukkit.createInventory(null, 45);
+        placeMinionInWorld(location);
+        saveMinion();
+        Logger.Log("1 Minion Adicionado ao Mundo e a Database!");
+    }
+    public Minion(ArmorStand stand, MinionType type, UUID minionId, Inventory inventory){
+        this.stand = stand;
+        this.type = type;
+        this.minionId = minionId;
+        this.inventory = inventory;
+    }
+    public void placeMinionInWorld(Location location){
         stand = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
-        stand.getEquipment().setHelmet(getMinionHead());
-        stand.getEquipment().setChestplate(getMinionBody());
-        stand.getEquipment().setLeggings(getMinionLeg());
-        stand.getEquipment().setBoots(getMinionFeet());
-        stand.setSmall(true);
-        stand.setBasePlate(false);
-        UUID minionId = UUID.randomUUID();
         NamespacedKey key = new NamespacedKey(Main.getInstance(), "minionId");
         stand.getPersistentDataContainer().set(key, PersistentDataType.STRING, minionId.toString());
-        MinionManager.addMinion(minionId, this);
-        inv = Bukkit.createInventory(null, 45,
-                Component.text("Inventario Minion", NamedTextColor.GOLD));
+        stand.setSmall(true);
+
     }
-    public MinionType getType(){
-        return this.type;
+    public void startTask(){
+
+    }
+    public void stopTask(){
+        this.task.cancel();
     }
     public Inventory getInventory(){
-        return this.inv;
+        return this.inventory;
     }
-    ItemStack getMinionHead(){
-        return new ItemStack(Material.PLAYER_HEAD);
-    }
-    ItemStack getMinionBody(){
-        return new ItemStack(Material.LEATHER_CHESTPLATE);
-    }
-    ItemStack getMinionLeg(){
-        return new ItemStack(Material.LEATHER_LEGGINGS);
-    }
-    ItemStack getMinionFeet(){
-        return new ItemStack(Material.LEATHER_BOOTS);
-    }
-
-    public void startWorking(){
-    }
-    public void stopWorking(){
-    }
-    public void turnToBlock(Block block){
-        Location blockLocation = block.getLocation();
-        blockLocation.add(0.5, 0.5, 0.5);
-
-        Vector direction = blockLocation.toVector().subtract(stand.getLocation().toVector()).normalize();
-
-        double yaw = Math.atan2(-direction.getX(), direction.getZ());
-        double pitch = Math.sin(-direction.getY());
-
-        yaw = Math.toDegrees(yaw);
-        pitch = Math.toDegrees(pitch);
-
-        Location newLocation = stand.getLocation();
-
-        newLocation.setYaw((float)yaw);
-        newLocation.setPitch((float)pitch);
-
-        stand.teleport(newLocation);
-    }
-    public static ItemStack getMinionItem(MinionType type){
-        ItemStack minionItem = new ItemStack(Material.PLAYER_HEAD);
-        ItemMeta meta = minionItem.getItemMeta();
-        NamespacedKey key = new NamespacedKey(Main.getInstance(), "minionType");
-        switch (type){
-            case POTATO:
-                meta.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 0);
-                break;
+    public void dropInventory(){
+        for(ItemStack stack : inventory.getContents()){
+            if(stack != null){
+                stand.getWorld().dropItemNaturally(stand.getLocation(), stack);
+            }
         }
-        minionItem.setItemMeta(meta);
-        return minionItem;
+        inventory = null;
     }
+    public void saveMinion(){
+        DatabaseManager db = Main.getDatabase();
+        MongoCollection<Document> minionCollection = db.getCollection(collection);
 
-    public ArmorStand getStand() {
-        return stand;
+        Document minionDocument = new Document("_id", this.minionId.toString());
+        minionDocument.append("type", this.type.toString());
+        minionDocument.append("items", getInventoryDocument());
+
+        if(minionCollection.find(Filters.eq("_id", minionId.toString())).first() != null){
+            minionCollection.findOneAndReplace(Filters.eq("_id", minionId.toString()), minionDocument);
+        }else{
+            minionCollection.insertOne(minionDocument);
+        }
+
+    }
+    public List<Document> getInventoryDocument(){
+        List<Document> items = new ArrayList<>();
+        for(ItemStack itemStack : inventory.getContents()){
+            if(itemStack == null){
+                continue;
+            }
+            Document itemDocument = new Document("material", itemStack.getType().name());
+            itemDocument.append("amount", itemStack.getAmount());
+            items.add(itemDocument);
+        }
+        return items;
+    }
+    public UUID getMinionId(){
+        return this.minionId;
     }
 }

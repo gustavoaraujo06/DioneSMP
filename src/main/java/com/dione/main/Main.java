@@ -1,9 +1,12 @@
 package com.dione.main;
 
+import com.dione.database.DatabaseManager;
+import com.dione.minion.MinionManager;
 import com.dione.minion.commands.CommandGiveMinion;
-import com.dione.minion.listeners.ListenerMinionBreak;
-import com.dione.minion.listeners.ListenerMinionInteract;
-import com.dione.minion.listeners.ListenerMinionPlace;
+import com.dione.minion.listeners.ListenerBreakMinion;
+import com.dione.minion.listeners.ListenerInteractMinion;
+import com.dione.minion.listeners.ListenerOnChunkLoadMinion;
+import com.dione.minion.listeners.ListenerPlaceMinion;
 import com.dione.scoreboard.listeners.ListenerScoreboard;
 import com.dione.shop.commands.CommandShopBuilder;
 import com.dione.shop.commands.CommandShopWitch;
@@ -29,6 +32,8 @@ import net.milkbowl.vault.economy.Economy;
 
 public class Main extends JavaPlugin {
     public static Economy econ;
+    private static DatabaseManager database;
+    public static DatabaseManager getDatabase(){return database;}
     private static Main instance;
     public static Main getInstance(){
         return instance;
@@ -55,10 +60,11 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ListenerShopArmor(), this);
         Bukkit.getPluginManager().registerEvents(new ListenerTweaks(), this);
         Bukkit.getPluginManager().registerEvents(new ListenerFortuneTweaks(), this);
-        Bukkit.getPluginManager().registerEvents(new ListenerMinionPlace(), this);
-        Bukkit.getPluginManager().registerEvents(new ListenerMinionBreak(), this);
-        Bukkit.getPluginManager().registerEvents(new ListenerMinionInteract(), this);
-        if(!setupEconomy()){
+        Bukkit.getPluginManager().registerEvents(new ListenerPlaceMinion(), this);
+        Bukkit.getPluginManager().registerEvents(new ListenerInteractMinion(), this);
+        Bukkit.getPluginManager().registerEvents(new ListenerOnChunkLoadMinion(), this);
+        Bukkit.getPluginManager().registerEvents(new ListenerBreakMinion(), this);
+        if(!setupEconomy() || !setupDatabase()){
             getLogger().severe("Não foi possivel inicializar o plugin: Erro ao inicializar Economy");
             getServer().getPluginManager().disablePlugin(this);
         }
@@ -71,5 +77,15 @@ public class Main extends JavaPlugin {
         }
         econ = getServer().getServicesManager().getRegistration(Economy.class).getProvider();
         return true;
+    }
+    public boolean setupDatabase(){
+        database = new DatabaseManager("mongodb://localhost:27017", "DioneSMP");
+        return database.getClient() != null;
+    }
+
+    @Override
+    public void onDisable() {
+        MinionManager.saveMinions();
+        super.onDisable();
     }
 }
